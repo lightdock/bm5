@@ -16,8 +16,12 @@ total = 0
 with open(csv_file) as ih:
     # 1F34:0:0:0:1:1:1:2:2:2:2:2:2:2:2:2
     for line in ih:
+        if line.startswith("#"):
+            continue
         line = line.rstrip(os.linesep)
         field = line.split(':')
+        if len(field) == 1:
+            field = line.split(",")
         tops[1] += top(field[1])
         tops[5] += top(field[2])
         tops[10] += top(field[3])
